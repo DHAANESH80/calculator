@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Finance calculator</title>
+    <style>
+        form {
+            background-color: #f7b265;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 30px;
+            width: 30%;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .form-group {
+            display: inline-block;
+            margin-right: 10px;
+        }
+        label {
+            display: inline-block;
+            width: 135px;
+            text-align: right;
+            margin: 4px;
+        }
+        h1{
+            text-align: center;
+            
+        }
+        h2{
+            text-align: center;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        .top-nav {
+            background-color: #f7b265;
+            text-align: center;
+            padding: 25px 0;
+        }
+        .top-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+        nav a {
+            display: inline-block;
+            margin-right: 20px;
+            font-size: 25px;
+        }
+        #footer {
+            border-top: 1px solid #f7b265;
+            padding: 10px;
+            text-align: center;
+            background-color:#f7b265 ;
+            
+        }
+
+        a:link {
+            color: black;
+          }
+
+          input[type=submit] {
+            background-color: #FCEAAA;
+            border: none;
+            color: black;
+            padding: 10px 20px;
+            text-decoration: none;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 15px;
+          }
+
+          input[type="text"] {
+            width: 150px;
+            padding: 5px 10px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 20px;
+          }
+    </style>
+</head>
+<body bgcolor="#FCEAAA">
+    <h1>Fin Calculator</h1>
+
+    <h2>Simple Interest</h2>
+    <form action="simple" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Principal ₹ :</label>
+            <input type="text" name="num1" required>
+        </div><br>
+        <div class="form-group">
+            <label>Rate of interest (%) :</label>
+            <input type="text" name="num2" required>
+        </div><br>
+        <div class="form-group">
+            <label>Time period (years) :</label>
+            <input type="text" name="num3" required>
+        </div><br><br>
+        <input type="submit"><br><br>
+        <b>Simple interest is ₹ {{result1}}</b>
+    </form>
+
+    <h2>Compound Interest</h2>
+    <form action="compund" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Principal ₹ :</label>
+            <input type="text" name="num1" required>
+        </div><br>
+        <div class="form-group">
+            <label>Rate of interest (%) :</label>
+            <input type="text" name="num2" required>
+        </div><br>
+        <div class="form-group">
+            <label>Time period (years) :</label>
+            <input type="text" name="num3" required>
+        </div><br><br>
+        <input type="submit"><br><br>
+        <b>Compound interest is ₹ {{result2}}</b>
+    </form>
+
+    <h2>SIP Calculator</h2>
+    <form action="sip" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Principal ₹ :</label>
+            <input type="text" name="num1" required>
+        </div><br>
+        <div class="form-group">
+            <label>Rate of interest (%) :</label>
+            <input type="text" name="num2" required>
+        </div><br>
+        <div class="form-group">
+            <label>Time period (mon) :</label>
+            <input type="text" name="num3" required>
+        </div><br><br>
+        <input type="submit"><br><br>
+        <b>Total value is ₹ {{result3}}</b>
+    </form>
+
+    <h2>Lumpsum Calculator</h2>
+    <form action="Lumpsum" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Principal ₹ :</label>
+            <input type="text" name="num1" required>
+        </div><br>
+        <div class="form-group">
+            <label>Rate of interest (%) :</label>
+            <input type="text" name="num2" required>
+        </div><br>
+        <div class="form-group">
+            <label>Time period (years) :</label>
+            <input type="text" name="num3" required>
+        </div><br><br>
+        <input type="submit"><br><br>
+        <b>Total value is ₹ {{result4}}</b>
+    </form>
+
+    <h2>FD calculator</h2>
+    <form action="fd" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Principal ₹ :</label>
+            <input type="text" name="num1" required>
+        </div><br>
+        <div class="form-group">
+            <label>Rate of interest (%) :</label>
+            <input type="text" name="num2" required>
+        </div><br>
+        <div class="form-group">
+            <label>Time period (years) :</label>
+            <input type="text" name="num3" required>
+        </div><br><br>
+        <input type="submit"><br><br>
+        <b>Total value is ₹ {{result5}}</b>
+    </form>
+
+    <h2>CAGR Calculator</h2>
+    <form action="cagr" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Initial investment :</label>
+            <input type="text" name="num1" required>
+        </div><br>
+        <div class="form-group">
+            <label>Final investment :</label>
+            <input type="text" name="num2" required>
+        </div><br>
+        <div class="form-group">
+            <label>period(years) :</label>
+            <input type="text" name="num3" required>
+        </div><br><br>
+        <input type="submit"><br><br>
+        <b>CAGR is {{result6}} % </b>
+    </form>
+
+    <br><br>
+
+    <nav class="top-nav">
+        <a>Finance Calculator</a>
+    </nav>
+
+    <div id="footer">
+        <p>Your feedback is valuable to me. I would be grateful if you could take a moment to share your thoughts with me.</p>
+        <a href="https://www.w3schools.com/">Contact detail 📩</a>
+        <p>Developed by </p>
+        <a href="https://www.linkedin.com/in/dhaaneshm/">Dhaanesh</a>
+    </div>
+
+
+</body>
+</html>
